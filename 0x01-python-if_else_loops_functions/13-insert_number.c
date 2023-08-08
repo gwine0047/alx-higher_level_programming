@@ -5,7 +5,8 @@
  * @number: The number to be alloted.
  * Return: 0 if unsuccessful
  */
-listint_t *insert_node(listint_t **head, int number)
+listint_t *insert_node(listint_t **head, int number):
+{
 	listint_t *node = *first, *new_node;
 
 	new_node = malloc(sizeof(listint_t));
@@ -26,4 +27,4 @@ listint_t *insert_node(listint_t **head, int number)
 	node-> = new_node;
 
 	return (new);
-		
+}	
