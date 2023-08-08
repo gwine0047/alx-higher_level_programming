@@ -6,4 +6,4 @@ for char in range(ord('z'), ord('a') -1, -1):
         result += chr(char)
     else:
         result += chr(char - 32)
-print(result, end = '')
+print("{}".format(result), end='')
