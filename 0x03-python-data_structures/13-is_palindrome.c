@@ -13,7 +13,7 @@ void listint_reverse(listint_t **head)
 	listint_t *prev = NULL;
 
 	while (current != NULL)
-    {
+	{
 		next = current->next; /*next points to the node after current(head->next) 4*/
 		current->next = prev; /*current-> points to prev which is NULL*/
 		prev = current;
