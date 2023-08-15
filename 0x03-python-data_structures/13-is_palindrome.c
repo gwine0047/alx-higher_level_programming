@@ -13,11 +13,11 @@ void listint_reverse(listint_t **head)
 	listint_t *prev = NULL;
 
 	while (current != NULL)
-
+    {
 		next = current->next; /*next points to the node after current(head->next) 4*/
 		current->next = prev; /*current-> points to prev which is NULL*/
-		prev = current;       /*prev points to current which is 5 */
-		current = next;       /*current now points to what's in next */
+		prev = current;
+		current = next;
 	}
 	*head = prev;
 }
@@ -45,9 +45,9 @@ int is_palindrome(listint_t **head)
 			same = slow->next->next;
 			break;
 		}
-		slow = slow->next
+		slow = slow->next;
 	}
-	linstint_reverse(&same);
+	listint_reverse(&same);
 
 	while (temp && same)
 	{
