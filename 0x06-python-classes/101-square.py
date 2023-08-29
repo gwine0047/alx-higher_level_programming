@@ -1,69 +1,70 @@
 #!/usr/bin/python3
-""""Square module"""
+"""This is a square module"""
 
 
 class Square:
-    """Declaring a Square class"""
+    """square class declaration"""
     def __init__(self, size=0, position=(0, 0)):
-        """Initializing the fields of Square\
+        """
+        class attributes initialization
         Args:
-            size: size of sqaure.
-            position: position of square    
+            size: size of square
+            position: position of square
         """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """Allot the size"""
+        """Attributes getter"""
         return self.__size
+
     @size.setter
     def size(self, value):
         if type(value) is not int:
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
     @property
     def position(self):
-        """Allot the position"""
+        """Attributes getter for position"""
         return self.__position
+
     @position.setter
     def position(self, value):
-        if value is not tuple and len(value) != 2:
-            raise TypeError("position must be a tuple of 2 positive integer")
-        elif value[0] < 0 or type(value[0]) is not int:
-            raise TypeError("position must be a tuple of 2 positive integer")
-        elif value[1] < 0 or type(value[1]) is not int:
-            raise TypeError("position must be a tuple of 2 positive integer")
-        self.__position = value
- 
+        if type(value) is not tuple or len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif type(value[0]) is not int or value[0] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif type(value[1]) is not int or value[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        else:
+            self.__position = value
+
     def area(self):
-        x = self.__size
-        return x ** 2
-    
+        """Public method of class Square"""
+        return self.__size * self.__size
+
     def my_print(self):
-        """prints a square using '#'"""
-        x = self.__size
-        a,b = self.__position
-        if x == 0:
+        """prints the sqaure using '#'"""
+        if self.__size == 0:
             print("")
-            return
-
-        [print("") for i in range(0, b)]
-        for i in range(0, x):
-            [print(" ", end="") for j in range(0, a)]
-            [print("#", end="") for k in range(0, x)]
+        s = self.__size
+        count = 0
+        p1, p2 = self.__position
+        for line in range(p2):
             print("")
-
-        def __str__(self):
-            """Represent the print() form of square"""
-            if self.__size != 0:
-                [print("") for i in range(0, b)]
-            for i in range(0, x):
-                [print(" ", end="") for j in range(0, a)]
-                [print("#", end="") for k in range(0, x)]
-            if i != x - 1:
-                print("")
-            return ("")
+        while count < s:
+            a = 0
+            while a < p1:
+                print(" ", end='')
+                a = a+1
+            count2 = 0
+            while count2 < s:
+                print("{}".format("#"), end="")
+                count2 += 1
+            print("")
+            count += 1
