@@ -1,3 +1,7 @@
 #!/usr/bin/python3
-class square:
+"""This is a square module"""
+
+
+class Square:
+    """square class declaration"""
     pass
