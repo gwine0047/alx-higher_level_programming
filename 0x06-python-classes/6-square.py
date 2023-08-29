@@ -61,7 +61,7 @@ class Square:
             a = 0
             while a < p1:
                 print(" ", end='')
-                a  = a + 1
+                a = a+1
             count2 = 0
             while count2 < s:
                 print("{}".format("#"), end="")
