@@ -27,7 +27,7 @@ def get_result(board):
                 break
     return (result)
 
-def mark_x(board, row, column):
+# def mark_x(board, row, column):
     """It is marks out tiles on a board
         Where a queen is prohibited to roam, the tiles are marked.
 
@@ -36,18 +36,19 @@ def mark_x(board, row, column):
             row(int): Queen's last row position
             column(int): Queen's last column position
     """
-    for col in range(column + 1, len(board)):
+    size = len(board)
+    for col in range(column + 1, size):
         board[row][col] = "x"
     for col in range(column - 1, -1, -1):
         board[row][col] = "x"
-    for r in range(row + 1, len(board)):
+    for r in range(row + 1, size):
         board[r][col] = "x"
     for r in range(row - 1, -1, -1):
         board[r][col] = "x"
     
     col = column + 1
-    for r in range(row + 1, len(board)):
-        if col >= len(board):
+    for r in range(row + 1, size):
+        if col >= size:
             break
         board[r][col] = "x"
         col += 1
@@ -55,12 +56,12 @@ def mark_x(board, row, column):
     for r in range(row - 1, -1, -1):
         if col < 0:
             break
-        board[r][col]
+        board[r][col] = "x"
         col -= 1
 
     col = column + 1
     for r in range(row - 1, -1, -1):
-        if col >= len(board):
+        if col >= size:
             break
         board[r][col] = "x"
         col += 1
@@ -68,8 +69,37 @@ def mark_x(board, row, column):
     for r in range(row - 1, -1, -1):
         if col < 0:
             break
-        board[r][col]
+        board[r][col] = "x"
         col -= 1
+
+def mark_x(board, row, column):
+    """Marks out tiles on a board where a queen is prohibited to roam."""
+    size = len(board)
+    # Mark horizontally and vertically
+    for i in range(size):
+        board[row][i] = "x"
+        board[i][column] = "x"
+
+    # Mark diagonally
+    for i, j in zip(range(row + 1, size), range(column + 1, size)):
+        if i >= size or j >= size:
+            break
+        board[i][j] = "x"
+
+    for i, j in zip(range(row - 1, -1, -1), range(column + 1, size)):
+        if i < 0 or j >= size:
+            break
+        board[i][j] = "x"
+
+    for i, j in zip(range(row + 1, size), range(column - 1, -1, -1)):
+        if i >= size or j < 0:
+            break
+        board[i][j] = "x"
+
+    for i, j in zip(range(row - 1, -1, -1), range(column - 1, -1, -1)):
+        if i < 0 or j < 0:
+            break
+        board[i][j] = "x"
 
 def repeat(board, row, queen, result):
     if queen == len(board):
