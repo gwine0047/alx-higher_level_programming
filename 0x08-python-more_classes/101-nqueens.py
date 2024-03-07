@@ -1,131 +1,126 @@
 #!/usr/bin/python3
-"""A program that solves the N queens puzzle"""
+"""Solves the N-queens puzzle"""
 
 import sys
 
 
-def set_board(length):
-    """Sets a chessboard of size len x len and initializes with zeroes"""
+def init_board(n):
+    """Initialize an `n`x`n` sized chessboard with zeroes"""
     board = []
-    [board.append([]) for i in range(length)]
-    [row.append(' ') for i in range(length) for row in board]
+    [board.append([]) for i in range(n)]
+    [row.append(' ') for i in range(n) for row in board]
     return (board)
 
-def duplicate(board):
-    """Returns a deepcopy of a chessboard"""
+
+def board_deepcopy(board):
+    """returns a deepcopy of a chessboard"""
     if isinstance(board, list):
-        return list(map(duplicate, board))
+        return list(map(board_deepcopy, board))
     return (board)
 
-def get_result(board):
-    """Returns a solved chessboard as an array of lists"""
-    result = []
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if board[i][j] == "Q":
-                result.append([i, j])
+
+def get_solution(board):
+    """returns the list of lists representation of a solved chessboard."""
+    solution = []
+    for row in range(len(board)):
+        for col in range(len(board)):
+            if board[row][col] == "Q":
+                solution.append([row, col])
                 break
-    return (result)
+    return (solution)
 
-# def mark_x(board, row, column):
-    """It is marks out tiles on a board
-        Where a queen is prohibited to roam, the tiles are marked.
 
-        Args:
-            board(list): The chessboard(present)
-            row(int): Queen's last row position
-            column(int): Queen's last column position
+def xout(board, row, col):
+    """x'es out spots on a chessboard.
+
+    All spots where non-attacking queens can no
+    longer be played are X-ed out.
+
+    Args:
+        board (list): The current working chessboard.
+        row (int): The row where a queen was last played.
+        col (int): The column where a queen was last played.
     """
-    size = len(board)
-    for col in range(column + 1, size):
-        board[row][col] = "x"
-    for col in range(column - 1, -1, -1):
-        board[row][col] = "x"
-    for r in range(row + 1, size):
+    # X out all forward spots
+    for c in range(col + 1, len(board)):
+        board[row][c] = "x"
+    # X out all backwards spots
+    for c in range(col - 1, -1, -1):
+        board[row][c] = "x"
+    # X out all spots below
+    for r in range(row + 1, len(board)):
         board[r][col] = "x"
+    # X out all spots above
     for r in range(row - 1, -1, -1):
         board[r][col] = "x"
-    
-    col = column + 1
-    for r in range(row + 1, size):
-        if col >= size:
+    # X out all spots diagonally down to the right
+    c = col + 1
+    for r in range(row + 1, len(board)):
+        if c >= len(board):
             break
-        board[r][col] = "x"
-        col += 1
-    col = column - 1
+        board[r][c] = "x"
+        c += 1
+    # X out all spots diagonally up to the left
+    c = col - 1
     for r in range(row - 1, -1, -1):
-        if col < 0:
+        if c < 0:
             break
-        board[r][col] = "x"
-        col -= 1
-
-    col = column + 1
+        board[r][c]
+        c -= 1
+    # X out all spots diagonally up to the right
+    c = col + 1
     for r in range(row - 1, -1, -1):
-        if col >= size:
+        if c >= len(board):
             break
-        board[r][col] = "x"
-        col += 1
-
-    for r in range(row - 1, -1, -1):
-        if col < 0:
+        board[r][c] = "x"
+        c += 1
+    # X out all spots diagonally down to the left
+    c = col - 1
+    for r in range(row + 1, len(board)):
+        if c < 0:
             break
-        board[r][col] = "x"
-        col -= 1
+        board[r][c] = "x"
+        c -= 1
 
-def mark_x(board, row, column):
-    """Marks out tiles on a board where a queen is prohibited to roam."""
-    size = len(board)
-    # Mark horizontally and vertically
-    for i in range(size):
-        board[row][i] = "x"
-        board[i][column] = "x"
 
-    # Mark diagonally
-    for i, j in zip(range(row + 1, size), range(column + 1, size)):
-        if i >= size or j >= size:
-            break
-        board[i][j] = "x"
+def recursive_solve(board, row, queens, solutions):
+    """Recursively solve an N-queens puzzle.
 
-    for i, j in zip(range(row - 1, -1, -1), range(column + 1, size)):
-        if i < 0 or j >= size:
-            break
-        board[i][j] = "x"
+    Args:
+        board (list): The current working chessboard.
+        row (int): The current working row.
+        queens (int): The current number of placed queens.
+        solutions (list): A list of lists of solutions.
+    Returns:
+        solutions
+    """
+    if queens == len(board):
+        solutions.append(get_solution(board))
+        return (solutions)
 
-    for i, j in zip(range(row + 1, size), range(column - 1, -1, -1)):
-        if i >= size or j < 0:
-            break
-        board[i][j] = "x"
+    for c in range(len(board)):
+        if board[row][c] == " ":
+            tmp_board = board_deepcopy(board)
+            tmp_board[row][c] = "Q"
+            xout(tmp_board, row, c)
+            solutions = recursive_solve(tmp_board, row + 1,
+                                        queens + 1, solutions)
 
-    for i, j in zip(range(row - 1, -1, -1), range(column - 1, -1, -1)):
-        if i < 0 or j < 0:
-            break
-        board[i][j] = "x"
+    return (solutions)
 
-def repeat(board, row, queen, result):
-    if queen == len(board):
-        result.append(get_result(board))
-        return(result)
-
-    for col in range(len(board)):
-        if board[row][col] == " ":
-            temp = duplicate(board)
-            temp[row][col] = "Q"
-            mark_x(temp, row, col)
-            result = repeat(temp, row + 1, queen + 1, result)
-    return(result)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+    if sys.argv[1].isdigit() is False:
+        print("N must be a number")
         sys.exit(1)
     if int(sys.argv[1]) < 4:
         print("N must be at least 4")
         sys.exit(1)
 
-    if sys.argv[1].isdigit() is False:
-        print("N must be a number")
-        sys.exit(1)
-
-    board = set_board(int(sys.argv[1]))
-    result = repeat(board, 0, 0, [])
-    for each in result:
-        print(each)
+    board = init_board(int(sys.argv[1]))
+    solutions = recursive_solve(board, 0, 0, [])
+    for sol in solutions:
+        print(sol)
