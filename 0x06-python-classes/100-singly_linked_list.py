@@ -1,4 +1,4 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """Module"""
 
 
@@ -16,7 +16,7 @@ class Node:
 
     @property
     def data(self):
-        """Allot data to self"""
+        """produces the value of data when called"""
         return self.__data
 
     @data.setter
@@ -26,7 +26,7 @@ class Node:
         self.__data = value
 
     def next_node(self):
-        """Allot next_node to self"""
+        """produces the value of next node when called"""
         return self.__next_node
 
     def next_node(self, value):
