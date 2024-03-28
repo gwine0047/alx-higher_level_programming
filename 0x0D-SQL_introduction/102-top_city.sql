@@ -1,5 +1,4 @@
---displays average temperature from top cities
---selction is during the month of July and August.
+-- this selction is during the month of July and August.
 
 SELECT `city`, AVG(value) AS `avg_temp`
 FROM `temperatures`
