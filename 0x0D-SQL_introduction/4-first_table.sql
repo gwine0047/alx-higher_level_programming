@@ -1,4 +1,4 @@
--- script creates a table called first_table in database
+-- This script creates a table called first_table in database
 -- first_table description:
 --      id INT
 --      name VARCHAR(256)
