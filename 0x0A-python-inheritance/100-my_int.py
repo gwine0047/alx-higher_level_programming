@@ -8,7 +8,7 @@ class MyInt(int):
     def __eq__(self, value):
         """substituting == with !="""
         return self.real != value
-    
+
     def __ne__(self, value):
         """substituting != operator with =="""
         return self.real == value
