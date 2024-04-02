@@ -2,7 +2,7 @@
 """A module shows a class inheriting from the class Int"""
 
 
-class Myint(int):
+class MyInt(int):
     """using int operators == and !="""
 
     def __eq__(self, value):
