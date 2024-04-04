@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/ython3
 """This module inherits from a class BaseGeometry"""
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 

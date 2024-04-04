@@ -1,4 +1,4 @@
-#!/usr/bin/ env python3
+#!/usr/bin/python3
 """A subclass Square for the base class Rectangle"""
 Rectangle = __import__('9-rectangle').Rectangle
 
