@@ -11,4 +11,4 @@ WHERE tv_shows.id NOT IN
     INNER JOIN tv_genres
     ON tv_show_genres.genre_id=tv_genres.id
     WHERE tv_genres.name="Comedy")
-ORDER BY tv_show.title;
+ORDER BY tv_shows.title;
