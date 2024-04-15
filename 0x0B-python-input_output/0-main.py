@@ -1,5 +1,16 @@
 #!/usr/bin/python3
-append_write = __import__('2-append_write').append_write
+"""
+12-main
+"""
+pascal_triangle = __import__('12-pascal_triangle').pascal_triangle
 
-nb_characters_added = append_write("godwin.txt", "\n\nI also think This School is so cool!\n")
-print(nb_characters_added)
+def print_triangle(triangle):
+    """
+    Print the triangle
+    """
+    for row in triangle:
+        print("[{}]".format(",".join([str(x) for x in row])))
+
+
+if __name__ == "__main__":
+    print_triangle(pascal_triangle(5))
