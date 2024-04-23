@@ -1,6 +1,6 @@
 #!/usr/bin/node
 /**
- * Check the parameters provided
+ * A Rectangle class with attributes width and height
  */
 class Rectangle {
   constructor (w, h) {
