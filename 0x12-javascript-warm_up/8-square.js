@@ -11,7 +11,7 @@ else
     let y = 0;
     let myVar = '';
 
-    while (y < x) {
+    while (y < num) {
       myVar = myVar + 'X';
       y++;
     }
