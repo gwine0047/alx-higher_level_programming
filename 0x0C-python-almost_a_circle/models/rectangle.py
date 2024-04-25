@@ -131,7 +131,7 @@ class Rectangle(Base):
         #             setattr(self, value, args[index])
 
     def to_dictionary(self):
-        """returns a dixtionary rep of Rectangle"""
+        """returns a dictionary rep of Rectangle"""
         dic_rec = {
             "id":self.id,
             "width":self.width,
