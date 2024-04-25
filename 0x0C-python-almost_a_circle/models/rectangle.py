@@ -13,9 +13,9 @@ class Rectangle(Base):
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
+        super().__init__(id) #constructor of the parent class
 
-    # All getter functions
+    # All getter functions (encapsulation)
     @property
     def width(self):
         """Fetches the value for the width"""
@@ -51,7 +51,7 @@ class Rectangle(Base):
     def height(self, value):
         """height setter"""
         if (type(value) is not int):
-            raise TypeError("height must be integer")
+            raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be > 0")
         self.__height = value
@@ -60,7 +60,7 @@ class Rectangle(Base):
     def x(self, value):
         """x value setter"""
         if (type(value) is not int):
-            raise TypeError("x must be integer")
+            raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
         self.__x = value
@@ -69,7 +69,21 @@ class Rectangle(Base):
     def y(self, value):
         """y value setter"""
         if (type(value) is not int):
-            raise TypeError("y must be integer")
+            raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """calculates the area of rectangle"""
+        return self.width * self.height
+
+    def display(self):
+        """Prints the area using #"""
+        for i in range(self.height):
+            print("#" * self.width)
+
+    def __str__(self):
+        """overriding the __str__ method"""
+
+        return(f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}")
