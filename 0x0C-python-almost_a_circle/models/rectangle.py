@@ -13,7 +13,8 @@ class Rectangle(Base):
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id) #constructor of the parent class
+        # Constructor of the parent class
+        super().__init__(id)
 
     # All getter functions (encapsulation)
     @property
@@ -80,10 +81,62 @@ class Rectangle(Base):
 
     def display(self):
         """Prints the area using #"""
+        for a in range(self.y):
+            print()
         for i in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """overriding the __str__ method"""
 
-        return(f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}")
+        return (
+            f"[Rectangle] ({self.id}) "
+            f"{self.x}/{self.y} - "
+            f"{self.width}/{self.height}")
+
+    def update(self, *args, **kwargs):
+        """assigns an argument to each attribute"""
+        if args:
+            for num, arg in enumerate(args):
+                if num == 0:
+                    self.id = arg
+                elif num == 1:
+                    self.width = arg
+                elif num == 3:
+                    self.x = arg
+                elif num == 2:
+                    self.height = arg
+                elif num == 4:
+                    self.y = arg
+                else:
+                    continue
+        elif len(kwargs) > 0:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value
+                else:
+                    break
+        # if args:
+        #     attributes = {"id", "width", "height", "x", "y"}
+        #     for index, value in enumerate(attributes):
+        #         if index < len(args):
+        #             setattr(self, value, args[index])
+
+    def to_dictionary(self):
+        """returns a dixtionary rep of Rectangle"""
+        dic_rec = {
+            "id":self.id,
+            "width":self.width,
+            "height":self.height,
+            "x":self.x,
+            "y":self.y
+        }
+        return (dic_rec)
