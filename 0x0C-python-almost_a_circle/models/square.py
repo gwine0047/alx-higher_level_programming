@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module defines a Square class"""
 
 from models.rectangle import Rectangle
@@ -57,7 +58,6 @@ class Square(Rectangle):
                     self.y = value
                 else:
                     break
-
     def to_dictionary(self):
         """returns the dictionary representation of a Square"""
         sqr_dic = {
