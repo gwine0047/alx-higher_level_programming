@@ -58,12 +58,13 @@ class Square(Rectangle):
                     self.y = value
                 else:
                     break
+
     def to_dictionary(self):
         """returns the dictionary representation of a Square"""
         sqr_dic = {
-            "id":self.id,
-            "x":self.x,
-            "size":self.width,
-            "y":self.y
+            "id": self.id,
+            "x": self.x,
+            "size": self.width,
+            "y": self.y
         }
         return sqr_dic
